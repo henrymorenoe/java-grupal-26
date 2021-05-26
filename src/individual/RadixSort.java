@@ -1,6 +1,7 @@
 package individual;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -44,7 +45,31 @@ public class RadixSort {
             }
 
 
-        // create list to keep 0 to 9 strings
+        // create HashMap to keep 0 to 9 strings arrayLists
+            List<String> L0 = new ArrayList<>();
+            List<String> L1 = new ArrayList<>();
+            List<String> L2 = new ArrayList<>();
+            List<String> L3 = new ArrayList<>();
+            List<String> L4 = new ArrayList<>();
+            List<String> L5 = new ArrayList<>();
+            List<String> L6 = new ArrayList<>();
+            List<String> L7 = new ArrayList<>();
+            List<String> L8 = new ArrayList<>();
+            List<String> L9 = new ArrayList<>();
+
+            Map<Integer, List> containerDigitList = new HashMap<Integer, List>();
+            containerDigitList.put(0, L0);
+            containerDigitList.put(0, L1);
+            containerDigitList.put(0, L2);
+            containerDigitList.put(0, L3);
+            containerDigitList.put(0, L4);
+            containerDigitList.put(0, L5);
+            containerDigitList.put(0, L6);
+            containerDigitList.put(0, L7);
+            containerDigitList.put(0, L8);
+            containerDigitList.put(0, L9);
+
+
 
         // go through each element in the arrayToSort and copy in the list accordingly to "n" digit
 
