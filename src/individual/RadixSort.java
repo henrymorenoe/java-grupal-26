@@ -12,10 +12,10 @@ public class RadixSort {
         // define array to sort
 
         List<Integer> listToSort = new ArrayList<>();
-        listToSort.add(36);
-        listToSort.add(134);
-        listToSort.add(102);
-        listToSort.add(1);
+        listToSort.add(456);
+        listToSort.add(1674);
+        listToSort.add(5302);
+        listToSort.add(10000);
 
         List<String> listToSortString = new ArrayList<>();
 
@@ -113,25 +113,41 @@ public class RadixSort {
         List<String> originalList = new ArrayList<>(listToSort_zeros);
         List<String> listSorted = new ArrayList<>();
         String digit_ = "";
-        for (String element : originalList) {
+
+        System.out.println(" ");
+        System.out.println("Elementos NO ord en LISTsORTED: ");
+        System.out.println();
+        for(String elem: listToSort_zeros){
+            System.out.println("elem: "+elem);
+        }
+        System.out.println();
+
+        for (String element : listToSort_zeros) {
                 digit_ = element.substring(digitPosition,digitPosition+1) ;
+            System.out.println("digit: " + digit_);
                 containerDigitList.get(digit_).add(element);
             }
+
+        listToSort_zeros.clear();
 
         String[] digits_ = {"0","1", "2", "3", "4", "5", "6", "7","8", "9"};
         int arrayLength = 10;
         for(int i = 0 ; i<arrayLength; i++){
-            for(int j=0; j< containerDigitList.get(digits_[i]).size() ; j++)
-            listSorted.add((String) containerDigitList.get(digits_[i]).get(j));
+            for(int j=0; j< containerDigitList.get(digits_[i]).size() ; j++) {
+                //listSorted.add((String) containerDigitList.get(digits_[i]).get(j));
+                listToSort_zeros.add((String) containerDigitList.get(digits_[i]).get(j));
+            }
         }
 
         System.out.println(" ");
         System.out.println("Elementos ordenados en LISTsORTED: ");
         System.out.println();
-        for(String elem: listSorted){
+        for(String elem: listToSort_zeros){
             System.out.println("elem: "+elem);
         }
-        return listSorted;
+        originalList.clear();
+        originalList = listSorted;
+        return listToSort_zeros; //return listSorted;
     }
 
 
