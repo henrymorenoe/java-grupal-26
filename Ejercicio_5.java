@@ -28,7 +28,7 @@ public class Ejercicio_5 {
 
         List<Integer> positionFromDecimalNumericSystem= new ArrayList<>();
 
-        int position = 1;
+        int position = 1; // counter of position or n'th position in decinal numeric System
 
         for(int i = 0; i<mDigitos; i++){
             numberOK = numberOK + (dDigit * position); // adding: unidades, decenas, centenas ... position in Decimal Numeric System
@@ -37,20 +37,23 @@ public class Ejercicio_5 {
         }
         System.out.println("Numero: "+ numberOK);
 
-        int counter_position = 1;
+
+        int counter_position = 1; // pivot for step bellow
         int minus1_Position = position -1 ;
         //int position_copy = position;
+        System.out.println("Line 44 number is " + numberOK);
         while(counterNumberOK<= nNumeros){
             numberOK = numberOK + (1 * position);
             position= position *10;
-            System.out.println("Numero: "+ numberOK);
+            System.out.println("Numero while 1: "+ numberOK);
+            System.out.println("counterNumer: " + counterNumberOK+ " , nNumeros: "+ nNumeros);
             counterNumberOK++;
 
             counter_position = 1;
             while(counterNumberOK<= nNumeros || counter_position < dDigit){
-                numberOK += position*counter_position;
+                numberOK += position * counter_position;
                 counter_position += 1;
-                System.out.println("Numero: "+ numberOK);
+                System.out.println("Numero in while 2 : "+ numberOK);
                 counterNumberOK++;
             }
 
