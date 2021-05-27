@@ -12,10 +12,10 @@ public class RadixSort {
         // define array to sort
 
         List<Integer> listToSort = new ArrayList<>();
-        listToSort.add(32);
-        listToSort.add(132);
+        listToSort.add(36);
+        listToSort.add(134);
         listToSort.add(102);
-        listToSort.add(4);
+        listToSort.add(1);
 
         List<String> listToSortString = new ArrayList<>();
 
@@ -57,21 +57,37 @@ public class RadixSort {
             List<String> L8 = new ArrayList<>();
             List<String> L9 = new ArrayList<>();
 
-            Map<Integer, List> containerDigitList = new HashMap<Integer, List>();
-            containerDigitList.put(0, L0);
-            containerDigitList.put(0, L1);
-            containerDigitList.put(0, L2);
-            containerDigitList.put(0, L3);
-            containerDigitList.put(0, L4);
-            containerDigitList.put(0, L5);
-            containerDigitList.put(0, L6);
-            containerDigitList.put(0, L7);
-            containerDigitList.put(0, L8);
-            containerDigitList.put(0, L9);
-
+            Map<String, List> containerDigitList = new HashMap<String, List>();
+            containerDigitList.put("0", L0);
+            containerDigitList.put("1", L1);
+            containerDigitList.put("2", L2);
+            containerDigitList.put("3", L3);
+            containerDigitList.put("4", L4);
+            containerDigitList.put("5", L5);
+            containerDigitList.put("6", L6);
+            containerDigitList.put("7", L7);
+            containerDigitList.put("8", L8);
+            containerDigitList.put("9", L9);
 
 
         // go through each element in the arrayToSort and copy in the list accordingly to "n" digit
+        List<String> pivotListSortedSteps = new ArrayList<>();
+
+        int digitPosition = 0;
+        Map<String, List> cleanedMapLists = new HashMap<>(containerDigitList);
+        for(int i = mostLength-1; i>=0; i--) {
+            // clean Map lists
+            cleanedMapLists = cleanMapLists(cleanedMapLists);
+            pivotListSortedSteps = arrangeListMaps(listToSort_zeros, containerDigitList, i);
+        }
+
+        System.out.println(" ");
+        System.out.println("Elementos ordenados: ");
+        System.out.println();
+        for(String elem: pivotListSortedSteps){
+            System.out.println("elem: "+elem);
+        }
+
 
         // clean arrayToSorted
 
@@ -79,6 +95,45 @@ public class RadixSort {
 
 
     }
+
+
+    private static Map<String, List> cleanMapLists(Map<String, List> cleanedMapLists) {
+        // by reference
+        // function to removeAll from each list
+        String[] digits_ = {"0","1", "2", "3", "4", "5", "6", "7","8", "9"};
+        int arrayLength = 10;
+        for(int i = 0 ; i<arrayLength; i++){
+            cleanedMapLists.get(digits_[i]).clear();
+        }
+        return cleanedMapLists;
+    }
+
+
+    private static List<String> arrangeListMaps(List<String> listToSort_zeros, Map<String, List> containerDigitList, int digitPosition) {
+        List<String> originalList = new ArrayList<>(listToSort_zeros);
+        List<String> listSorted = new ArrayList<>();
+        String digit_ = "";
+        for (String element : originalList) {
+                digit_ = element.substring(digitPosition,digitPosition+1) ;
+                containerDigitList.get(digit_).add(element);
+            }
+
+        String[] digits_ = {"0","1", "2", "3", "4", "5", "6", "7","8", "9"};
+        int arrayLength = 10;
+        for(int i = 0 ; i<arrayLength; i++){
+            for(int j=0; j< containerDigitList.get(digits_[i]).size() ; j++)
+            listSorted.add((String) containerDigitList.get(digits_[i]).get(j));
+        }
+
+        System.out.println(" ");
+        System.out.println("Elementos ordenados en LISTsORTED: ");
+        System.out.println();
+        for(String elem: listSorted){
+            System.out.println("elem: "+elem);
+        }
+        return listSorted;
+    }
+
 
     private static String addZeros(String stringNumber, int desiredSize) {
         StringBuilder theStringNumber_ = new StringBuilder(stringNumber);
